@@ -21,7 +21,7 @@
     <div id="app">
 
         <div class="jobs-list" v-for="(offer, index) in jobs">
-            <div style="margin-bottom: 80px;" class="job-offer">
+            <div class="job-offer">
 
                 <h2 class="company-name"> {{ offer.company }} </h2>
                 <h4 class="position"> {{ offer.position }} </h4>
@@ -35,9 +35,18 @@
                 <h5> {{ offer.contract }} </h5>
 
                 <button class="apply" @click="apply(index)">APPLY!</button>
-                <h5 style="display: none; color: brown; margin: 0;" class="apply-alert">You've applied for this position!</h5>
+                <h5 class="apply-alert">You've applied for this position!</h5>
 
             </div>
+        </div>
+
+        <div class="modal">
+
+            <div class="modal-content">
+              <span @click="hideModal" class="close">&times;</span>
+              <p>Application successful!</p>
+            </div>
+          
         </div>
 
     </div>

@@ -76,13 +76,7 @@ new Vue(
 
                 if (this.starred.includes(index)) {
 
-                    this.starred.forEach(number => {
-                        let value = this.starred.indexOf(number)
-
-                        if (number === index) {
-                            this.starred.splice(value, 1);
-                        }
-                    });
+                    this.starRemove(index);
             
                 } else {
                     this.starred.push(index);
@@ -95,22 +89,42 @@ new Vue(
                 // Change appearance and button when applied
 
                 document.querySelectorAll('.apply')[index].disabled = true;
-                document.querySelectorAll('.apply-alert')[index].style.display = 'inline-block'
 
-                // push into applied
+                this.applied.push(index);
 
-                this.applied.push(index)
+                this.starRemove(index);
 
-                // remove from Starred
+                this.applyConfirm();
+
+                setTimeout(() => {
+                    document.querySelectorAll('.apply-alert')[index].style.display = 'inline-block'
+                }, 3500) 
+
+            },
+
+            starRemove: function(index) {
 
                 this.starred.forEach(number => {
-                    let value = this.starred.indexOf(number)
+                    let value = this.starred.indexOf(number);
 
                     if (number === index) {
                         this.starred.splice(value, 1);
                     }
                 });
+            },
 
+            applyConfirm: function() {
+                setTimeout(() => {
+                    document.querySelector('.modal').style.display = 'block'
+                }, 1500)
+
+                setTimeout(() => {
+                    this.hideModal();
+                }, 3500)
+            },
+
+            hideModal: function() {
+                document.querySelector('.modal').style.display = 'none'
             }
         }
     }
