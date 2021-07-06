@@ -3,14 +3,59 @@
     box-sizing: border-box;
 }
 
-.job-offer {
+#app {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.jobs-list {
     margin-bottom: 80px;
+    width: 55%;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+h2, h4 {
+    margin-top: 0;
 }
 
 .apply-alert {
     display: none;
     color: brown;
     margin: 0;
+}
+
+.lists {
+    width: 40%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    padding: 20px;
+}
+
+.applied-list, .starred-list {
+    border: 1px solid #ccc;
+    min-height: 70px;
+    border-radius: 20px;
+    margin-bottom: 80px;
+    padding: 10px;
+}
+
+.lists li {
+    list-style-type: none;
+    padding: 5px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.lists li span:first-child {
+    font-weight: bold;
 }
 
 .modal {

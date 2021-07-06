@@ -21,22 +21,42 @@
     <div id="app">
 
         <div class="jobs-list" v-for="(offer, index) in jobs">
-            <div class="job-offer">
 
-                <h2 class="company-name"> {{ offer.company }} </h2>
-                <h4 class="position"> {{ offer.position }} </h4>
+            <h2 class="company-name"> {{ offer.company }} </h2>
+            <h4 class="position"> {{ offer.position }} </h4>
 
-                <i @click="star(index)" v-if="starred.includes(index)" class="fas fa-star"></i>
-                <i @click="star(index)" v-else class="far fa-star"></i>
+            <i @click="star(index)" v-if="starred.includes(index)" class="fas fa-star"></i>
+            <i @click="star(index)" v-else class="far fa-star"></i>
 
-                <p class="job-descr"> {{ offer.description }} </p>
-                <span> {{ offer.created_at }} </span>
-                <span> {{ offer.city }} </span>
-                <h5> {{ offer.contract }} </h5>
+            <p class="job-descr"> {{ offer.description }} </p>
+            <span> {{ offer.created_at }} </span>
+            <span> {{ offer.city }} </span>
+            <h5> {{ offer.contract }} </h5>
 
-                <button class="apply" @click="apply(index)">APPLY!</button>
-                <h5 class="apply-alert">You've applied for this position!</h5>
+            <button class="apply" @click="apply(index)">APPLY!</button>
+            <h5 class="apply-alert">You've applied for this position!</h5>
+        </div>
 
+        <div class="lists">
+
+            <div class="applied-list">You've applied to:
+                <ul>
+                    <li v-for="job in applied">
+                        <h4>{{ jobs[job].company }}</h4>
+                        <h5>{{ jobs[job].city }}</h5>
+                        <span>{{ jobs[job].position }}</span>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="starred-list">You've starred:
+                <ul>
+                    <li v-for="job in starred">
+                        <h4>{{ jobs[job].company }}</h4>
+                        <h5>{{ jobs[job].city }}</h5>
+                        <span>{{ jobs[job].position }}</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
