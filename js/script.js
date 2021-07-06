@@ -7,7 +7,7 @@ new Vue(
         data: {
             jobs: [
                 {
-                    id: 1,
+                    id: 0,
                     company: 'Perferendis',
                     position: 'UI Designer',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
@@ -18,7 +18,7 @@ new Vue(
                 },
                 
                 {
-                    id: 2,
+                    id: 1,
                     company: 'Perferendis',
                     position: 'Developer',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
@@ -29,7 +29,7 @@ new Vue(
                 },
 
                 {
-                    id: 3,
+                    id: 2,
                     company: 'Perferendis',
                     position: 'Developer',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
@@ -40,7 +40,7 @@ new Vue(
                 },
 
                 {
-                    id: 4,
+                    id: 3,
                     company: 'Perferendis',
                     position: 'Graphic Designer',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
@@ -51,7 +51,7 @@ new Vue(
                 },
 
                 {
-                    id: 5,
+                    id: 4,
                     company: 'Perferendis',
                     position: 'Developer',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
@@ -62,12 +62,56 @@ new Vue(
                 },
             ],
 
-            starred: [],
+            starred: [1, 3, 4],
             applied: []            
         },
 
         methods: {
+            star: function(index) {
 
+                if (this.applied.includes(index)) {
+                    alert("You can't star something you've already applied for!")
+                    return;
+                }
+
+                if (this.starred.includes(index)) {
+
+                    this.starred.forEach(number => {
+                        let value = this.starred.indexOf(number)
+
+                        if (number === index) {
+                            this.starred.splice(value, 1);
+                        }
+                    });
+            
+                } else {
+                    this.starred.push(index);
+
+                }
+            },
+
+            apply: function(index) {
+
+                // Change appearance and button when applied
+
+                document.querySelectorAll('.apply')[index].disabled = true;
+                document.querySelectorAll('.apply-alert')[index].style.display = 'inline-block'
+
+                // push into applied
+
+                this.applied.push(index)
+
+                // remove from Starred
+
+                this.starred.forEach(number => {
+                    let value = this.starred.indexOf(number)
+
+                    if (number === index) {
+                        this.starred.splice(value, 1);
+                    }
+                });
+
+            }
         }
     }
 )

@@ -25,10 +25,17 @@
 
                 <h2 class="company-name"> {{ offer.company }} </h2>
                 <h4 class="position"> {{ offer.position }} </h4>
+
+                <i @click="star(index)" v-if="starred.includes(index)" class="fas fa-star"></i>
+                <i @click="star(index)" v-else class="far fa-star"></i>
+
                 <p class="job-descr"> {{ offer.description }} </p>
                 <span> {{ offer.created_at }} </span>
                 <span> {{ offer.city }} </span>
                 <h5> {{ offer.contract }} </h5>
+
+                <button class="apply" @click="apply(index)">APPLY!</button>
+                <h5 style="display: none; color: brown; margin: 0;" class="apply-alert">You've applied for this position!</h5>
 
             </div>
         </div>
