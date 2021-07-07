@@ -7,8 +7,8 @@ new Vue(
         data: {
             jobs: [
                 {
-                    id: 0,
-                    company: 'Perferendis',
+                    id: 1,
+                    company: 'Google LLC',
                     position: 'UI Designer',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
                     created_at: '5/10/2021',
@@ -18,9 +18,9 @@ new Vue(
                 },
                 
                 {
-                    id: 1,
-                    company: 'Perferendis',
-                    position: 'Developer',
+                    id: 2,
+                    company: 'Innoteam Srl',
+                    position: 'Mechanical Dev',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
                     created_at: '5/13/2021',
                     logo: 'logo.jpg',
@@ -29,9 +29,9 @@ new Vue(
                 },
 
                 {
-                    id: 2,
-                    company: 'Perferendis',
-                    position: 'Developer',
+                    id: 3,
+                    company: 'Prospecto Srl',
+                    position: 'Frontend Dev',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
                     created_at: '5/15/2021',
                     logo: 'logo.jpg',
@@ -40,9 +40,9 @@ new Vue(
                 },
 
                 {
-                    id: 3,
-                    company: 'Perferendis',
-                    position: 'Graphic Designer',
+                    id: 4,
+                    company: 'Avangarde Consulting',
+                    position: 'SASS Dev',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
                     created_at: '5/20/2021',
                     logo: 'logo.jpg',
@@ -51,9 +51,9 @@ new Vue(
                 },
 
                 {
-                    id: 4,
-                    company: 'Perferendis',
-                    position: 'Developer',
+                    id: 5,
+                    company: 'Electrolux',
+                    position: 'Gomorra Dev (yeah right)',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veniam similique adipisci! Perferendis odio sapiente libero quam deleniti quidem consequuntur adipisci minima non iusto, sunt optio hic. Corporis, laboriosam perferendis?',
                     created_at: '5/22/2021',
                     logo: 'logo.jpg',
@@ -69,36 +69,39 @@ new Vue(
         methods: {
             star: function(index) {
 
-                if (this.applied.includes(index)) {
+                let id = this.jobs[index].id - 1;
+
+                if (this.applied.includes(id)) {
                     alert("You can't star something you've already applied for!")
                     return;
                 }
 
-                if (this.starred.includes(index)) {
+                if (this.starred.includes(id)) {
 
-                    this.starRemove(index);
+                    this.starRemove(id);
             
                 } else {
-                    this.starred.push(index);
+                    this.starred.push(id);
 
                 }
             },
 
             apply: function(index) {
 
+                let id = this.jobs[index].id - 1;
+
                 // Change appearance and button when applied
 
-                document.querySelectorAll('.apply')[index].disabled = true;
-
-                this.applied.push(index);
-
-                this.starRemove(index);
-
-                this.applyConfirm();
+                document.querySelectorAll('.apply-button')[index].disabled = true;
 
                 setTimeout(() => {
-                    document.querySelectorAll('.apply-alert')[index].style.display = 'inline-block'
+
+                    this.applied.push(id);
+                    this.starRemove(id);
+                    document.querySelectorAll('.apply-alert')[index].style.color = 'brown';
                 }, 3500) 
+
+                this.applyConfirm();
 
             },
 
@@ -109,6 +112,7 @@ new Vue(
 
                     if (number === index) {
                         this.starred.splice(value, 1);
+                        return;
                     }
                 });
             },
