@@ -98,6 +98,7 @@ new Vue(
 
                     this.applied.push(id);
                     this.starRemove(id);
+                    document.querySelectorAll('.fa-star')[index].style.color = '#ccc'
                     document.querySelectorAll('.apply-alert')[index].style.color = 'brown';
                 }, 3500) 
 

@@ -33,22 +33,23 @@
             
 
             <p class="job-descr"> {{ offer.description }} </p>
-            <h4 class="job-details"> {{ offer.created_at }} {{ offer.city }} </h4>
+            <h4 class="job-details"> {{ offer.created_at }} - {{ offer.city }} </h4>
             <h4 class="contract"> {{ offer.contract }} </h4>
 
             <div class="offer-saving">
 
-                <div class="offer-saving star">
+                <div @click="star(index)" class="offer-saving star">
 
-                    <i @click="star(index)" v-if="starred.includes(index)" class="fas fa-star"></i>
-                    <i @click="star(index)" v-else class="far fa-star"></i>
+                    <i v-if="starred.includes(index)" class="fas fa-star"></i>
+                    <i v-else class="far fa-star"></i>
 
-                    <h5 v-if="starred.includes(index)"> Stop following this job offer.</h5>
+                    <h5 v-if="starred.includes(index)">Stop following this job offer.</h5>
+                    <h5 class="grey" v-else-if="applied.includes(index)">Star disabled: you already applied for this offer.</h5>
                     <h5 v-else> Follow this offer by adding it to your favorites!</h5>
 
                 </div>
 
-                <h4>or...</h4>
+                <h4>or</h4>
 
                 <div class="offer-saving apply">
                     <button class="apply-button" @click="apply(index)">APPLY!</button>

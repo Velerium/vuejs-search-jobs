@@ -16,6 +16,10 @@ body {
     position: relative;
 }
 
+.grey {
+    color: #888;
+}
+
 .jobs-list {
     margin-bottom: 50px;
     width: 55%;
@@ -26,8 +30,9 @@ body {
 }
 
 .jobs-list i {
-    margin-top: 10px;
-    margin-right: 20px;
+    margin-top: 8px;
+    color: #ffcc00;
+    font-size: 25px;
 }
 
 .jobs-list .company-name, .position, .job-descr, .job-details, .contract {
@@ -48,7 +53,7 @@ body {
 
 .offer-saving {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -63,9 +68,14 @@ body {
 
 .offer-saving.star, .offer-saving.apply {
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     width: 40%;
     height: 70px;
+}
+
+.fa-star {
+    
 }
 
 h2, h3, h4 {
